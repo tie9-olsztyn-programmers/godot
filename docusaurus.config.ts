@@ -67,7 +67,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Materiały',
+          label: 'Tutorial',
         },
         {
           href: 'https://github.com/tie9-olsztyn-programmers/godot',

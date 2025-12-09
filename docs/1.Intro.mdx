@@ -1,0 +1,57 @@
+---
+title: Godot - wprowadzenie
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Godot - wprowadzenie
+
+## Czym jest Godot?
+- Godot to darmowy, otwartoźródłowy silnik gier 2D i 3D (open-source, licencja MIT).
+- Został stworzony w 2007 roku, a od 2014 roku rozwijany przez społeczność i fundację *Godot Foundation*.
+
+
+Pozwala tworzyć gry:
+- na komputer (Windows, Linux, macOS),
+- webowe (HTML5),
+- mobilne (Android, iOS),
+- a nawet konsole (przez partnerów).
+
+
+:::tip Najważniejsze idea Godot
+- Wszystko jest Node (węzłem).
+- Węzły budują sceny, a sceny budują całą grę.
+
+:::
+
+## Najważniejsze elementy Godot
+
+Poniższa tabela przedstawia **najważniejsze elementy (core concepts) Godot Engine** (wersja 4.5), oparte na oficjalnej dokumentacji i tutorialach.<grok-card data-id="285cb8" data-type="citation_card"></grok-card><grok-card data-id="0b47dd" data-type="citation_card"></grok-card><grok-card data-id="4f982a" data-type="citation_card"></grok-card>
+
+| Element                  | Opis                                                                 | Zastosowanie |
+|--------------------------|----------------------------------------------------------------------|-------------|
+| **Węzeł (Node)**        | Podstawowa jednostka gry – obiekt z właściwościami, metodami i sygnałami (np. `Sprite2D`, `Button`).<grok-card data-id="e66afe" data-type="citation_card"></grok-card><grok-card data-id="e1584e" data-type="citation_card"></grok-card> | Budowanie obiektów gry (gracz, UI, fizyka). Wszystko w Godot to węzeł! |
+| **Scena (Scene)**       | Zapisany plik `.tscn` – reusable grupa węzłów (drzewo węzłów), która może być instancjonowana.<grok-card data-id="b46d3b" data-type="citation_card"></grok-card><grok-card data-id="5afa7d" data-type="citation_card"></grok-card> | Modułowe poziomy, postacie, UI – np. "player.tscn". |
+| **Drzewo scen (Scene Tree)** | Hierarchia węzłów (rodzic-dzieci) organizująca całą grę.<grok-card data-id="675577" data-type="citation_card"></grok-card> | Struktura gry: root → main → player → sprite. |
+| **Skrypt (Script)**     | Kod w GDScript (Python-like), C# lub C++ dołączany do węzła.<grok-card data-id="523158" data-type="citation_card"></grok-card> | Logika: ruch, AI, licznik czasu w Twojej grze. |
+| **Sygnały (Signals)**   | System zdarzeń – węzły emitują sygnały (np. `button.pressed`), inne je łapią.<grok-card data-id="6142a7" data-type="citation_card"></grok-card><grok-card data-id="10899b" data-type="citation_card"></grok-card> | Komunikacja bez zależności: START/STOP w Button. |
+| **Zasoby (Resources)**  | Dane: tekstury, audio, shadery – ładowane i współdzielone.<grok-card data-id="083504" data-type="citation_card"></grok-card> | Grafika, dźwięki, fonty – `load("res://texture.png")`. |
+| **GDScript**            | Język skryptowy Godot – prosty jak Python.<grok-card data-id="d839e4" data-type="citation_card"></grok-card> | Pierwszy kod dla początkujących. |
+| **Edytor (Editor)**     | Zintegrowane IDE z viewport 2D/3D, inspektorem, skryptami.<grok-card data-id="a323e9" data-type="citation_card"></grok-card> | Tworzenie scen wizualnie + kod. |
+
+## Przykład użycia w grze z następnej lekcji *TimerGame*
+- **Node**: `Label`, `Button`
+- **Scene**: `main.tscn`
+- **Signals**: `button.pressed.connect(...)`
+- **Script**: `main.gd` z `_ready()`, `_process()`
+
+## Główne grupy node’ów w Godot
+
+| Kategoria | Opis | Przykładowe węzły | Zastosowanie |
+|-----------|------|-------------------|-------------|
+| **Node** (bazowe / logika) | **Najprostsze węzły** – czysty kod i struktura, **nic nie rysują wizualnie**. | `Node`, `Node2D` (bazowy), `Node3D` (bazowy) | **Logika gry**, zarządzanie sceną, struktura drzewa, skrypty bez grafiki. |
+| **Node2D** (grafika 2D) | **Obiekty 2D** z pozycją, obrotem, skalą – **podstawa każdej platformówki**. | `Sprite2D`, `AnimatedSprite2D`, `Path2D`, `Light2D` | **Platformówki**, efekty cząsteczkowe, ruch 2D, interakcje wizualne. |
+| **Control** (UI / interfejs) | **Elementy UI** – **nie poruszają się z kamerą**, zawsze na ekranie. | `Button`, `Label`, `VBoxContainer`, `LineEdit`, `Panel` | **Menu główne**, HUD, przyciski, ustawienia, okna dialogowe. |
+| **Node3D** (grafika 3D) | **Obiekty 3D** z pozycją XYZ, rotacją, skalą – **pełny 3D rendering**. | `MeshInstance3D`, `Camera3D`, `DirectionalLight3D`, `Skeleton3D` | **Gry 3D**, symulatory, FPS, otwarte światy. |
+| **Physics node'y** (2D/3D fizyka) | **Kolizje, grawitacja, ruch fizyczny** – automatyczne symulacje. | **2D**: `RigidBody2D`, `CharacterBody2D`, `StaticBody2D`, `Area2D`, `CollisionShape2D`<br/>**3D**: `RigidBody3D`, `CharacterBody3D`, `StaticBody3D`, `Area3D` | **Realistyczna fizyka**: skakanie, spadanie, kolizje, wykrywanie. |
+| **Specjalne node'y systemowe** | **Gotowe narzędzia systemowe** – timery, audio, AI, efekty. | `Timer`, `AudioStreamPlayer`, `NavigationAgent2D/3D`, `ParallaxBackground`, `AnimationPlayer` | **Czas**, **dźwięk**, **ścieżki AI**, **efekty tła**, **animacje**. |

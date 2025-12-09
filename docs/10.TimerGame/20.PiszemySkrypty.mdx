@@ -1,0 +1,133 @@
+---
+title: Piszemy skrypty
+---
+
+
+# Piszemy skrypty
+
+## Podstawowe wbudowane funkcje
+### `_ready()`
+```gdscript
+func _ready() -> void:
+    # kod wykonywany raz, gdy scena jest w pełni wczytana
+```
+
+:::tip
+- Kiedy działa?
+  - Raz — gdy scena jest gotowa, wszystkie `node`’y istnieją i możesz je odczytywać.
+- Po co?
+  - podłączanie sygnałów
+  - ustawianie początkowych wartości
+  - ładowanie UI
+  - resetowanie stanu gry
+:::
+
+
+### `_process(delta)`
+```gdscript
+func _process(delta: float) -> void:
+    # Kod wykonywany co klatkę (np. 60 razy na sekundę)
+```
+
+:::tip
+- Kiedy działa?
+  - Wywoływana co każdą klatkę (np. 60 razy na sekundę).
+- Po co?
+  - liczniki czasu,
+  - animacje,
+  - ruch postaci,
+  - sprawdzanie warunków gry.
+
+`delta` to czas w sekundach od poprzedniej klatki (np. `0.016`).
+
+:::
+
+### `_physics_process(delta)`
+```gdscript
+func _physics_process(delta: float) -> void:
+     # Kod wykonywany w stałych odstępach czasu
+```
+
+:::tip
+W przeciwieństwie do `_process()`, tutaj tempo jest stałe (np. 60 Hz).
+To ważne przy fizyce.
+
+Zastosowania:
+- grawitacja,
+- ruch `KinematicBody2D` / `CharacterBody2D`,
+- kolizje,
+- płynny i stabilny ruch.
+
+:::
+
+### `func _input(event)
+```gdscript
+func _input(event: InputEvent) -> void:
+    # reakcja na każde wejście od gracza
+```
+
+:::tip
+Działa przy każdym:
+- naciśnięciu klawisza,
+- kliknięciu myszą,
+- przesunięciu myszki,
+- sygnale kontrolera.
+
+Zastosowania:
+- własne sterowanie (np. myszą),
+- reakcje na konkretne klawisze,
+- interakcje z obiektami.
+
+:::
+
+
+### `func _unhandled_input(event)`
+```gdscript
+func _unhandled_input(event: InputEvent) -> void:
+    # wejścia, których nie przechwyciło UI
+```
+Działa:
+- wejście nieprzechwycone przez UI
+
+Zastosowanie:
+- sterowania postacią, gdy masz UI, które też reaguje na kliknięcia
+- do globalnych skrótów klawiszowych
+-
+
+
+:::note `_input()` vs `_unhandled_input()`
+- używaj `_input()` do:
+    - poruszanie postacią
+    - poruszanie kamerą
+    - strzelanie myszą
+    - debug input
+    - gry bez UI (platformówki, FPS)
+    - debugowania i testów,
+- używaj `_unhandled_input()` do:
+    - dialogi
+    - menu pauzy
+    - kliknięcia nie-UI mają otwierać/zamykać coś
+    - globalne skróty (np. ESC), ale tylko gdy UI ich nie przejęło
+    - sterowania grą – wtedy GUI nie będzie z nim kolidować.
+
+:::
+
+### Funkcje reagujące na sygnały
+
+#### `_on_button_pressed() `
+```gdscript
+func _on_button_pressed() -> void:
+    # kod wykonywany po klinięciu przycisku
+```
+Przykłady sygnałów:
+- `Button.pressed`
+- `Timer.timeout`
+- `Area2D.body_entered`
+- `AnimationPlayer.finished`
+
+
+
+
+
+
+
